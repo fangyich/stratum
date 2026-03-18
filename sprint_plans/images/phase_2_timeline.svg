@@ -1,0 +1,111 @@
+<svg width="100%" viewBox="0 0 680 600" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: sans-serif; fill: #1a1915; }
+    .label-title { font-size: 14px; font-weight: 500; }
+    .label-sub { font-size: 12px; fill: #0F6E56; }
+    .label-phase { font-size: 15px; font-weight: 500; fill: #085041; }
+    .label-meta { font-size: 12px; fill: #0F6E56; }
+    .label-end { font-size: 12px; fill: #0F6E56; opacity: 0.6; }
+    .spine { stroke: #888; stroke-width: 1; opacity: 0.2; }
+    .connector { stroke: #0F6E56; stroke-width: 0.5; opacity: 0.5; }
+    .row-rect { fill: #0F6E56; fill-opacity: 0.08; stroke: #0F6E56; stroke-width: 0.5; stroke-opacity: 0.4; }
+    .dot { fill: #0F6E56; opacity: 0.85; }
+    .end-outer { fill: none; stroke: #0F6E56; stroke-width: 1.5; opacity: 0.5; }
+    .end-inner { fill: #0F6E56; opacity: 0.5; }
+  </style>
+
+  <rect x="40" y="18" width="8" height="8" rx="1" fill="#0F6E56"/>
+  <text class="label-phase" x="54" y="28">Phase 2 — Full Stratum Feature Set (On-Premises)</text>
+  <text class="label-meta" x="54" y="44">12 sprints · 1 week each · 12 weeks</text>
+
+  <line class="spine" x1="100" y1="60" x2="100" y2="560"/>
+
+  <!-- S1 -->
+  <circle class="dot" cx="100" cy="78" r="5"/>
+  <line class="connector" x1="105" y1="78" x2="150" y2="78"/>
+  <rect class="row-rect" x="150" y="60" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="74" dominant-baseline="central" fill="#085041">S1 · Authentication + RBAC</text>
+  <text class="label-sub" x="162" y="88" dominant-baseline="central">Login · Four roles · API-layer permission enforcement</text>
+
+  <!-- S2 -->
+  <circle class="dot" cx="100" cy="118" r="5"/>
+  <line class="connector" x1="105" y1="118" x2="150" y2="118"/>
+  <rect class="row-rect" x="150" y="100" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="114" dominant-baseline="central" fill="#085041">S2 · Encrypted communication + role-specific UI shells</text>
+  <text class="label-sub" x="162" y="128" dominant-baseline="central">TLS on local network · Four role-specific interface shells</text>
+
+  <!-- S3 -->
+  <circle class="dot" cx="100" cy="158" r="5"/>
+  <line class="connector" x1="105" y1="158" x2="150" y2="158"/>
+  <rect class="row-rect" x="150" y="140" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="154" dominant-baseline="central" fill="#085041">S3 · Building Model versioning + IFC upload</text>
+  <text class="label-sub" x="162" y="168" dominant-baseline="central">Immutable IFC versions · Extraction warnings · 3D preview</text>
+
+  <!-- S4 -->
+  <circle class="dot" cx="100" cy="198" r="5"/>
+  <line class="connector" x1="105" y1="198" x2="150" y2="198"/>
+  <rect class="row-rect" x="150" y="180" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="194" dominant-baseline="central" fill="#085041">S4 · Print Configuration + Print Project composition</text>
+  <text class="label-sub" x="162" y="208" dominant-baseline="central">Versioned Print Configs · Print Projects · Pipeline trigger</text>
+
+  <!-- S5 -->
+  <circle class="dot" cx="100" cy="238" r="5"/>
+  <line class="connector" x1="105" y1="238" x2="150" y2="238"/>
+  <rect class="row-rect" x="150" y="220" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="234" dominant-baseline="central" fill="#085041">S5 · Pipeline stages 1 + 2 (Parse and Slice)</text>
+  <text class="label-sub" x="162" y="248" dominant-baseline="central">IFC parse + slice execution · Slice viewer · Re-entry logic</text>
+
+  <!-- S6 -->
+  <circle class="dot" cx="100" cy="278" r="5"/>
+  <line class="connector" x1="105" y1="278" x2="150" y2="278"/>
+  <rect class="row-rect" x="150" y="260" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="274" dominant-baseline="central" fill="#085041">S6 · Pipeline stages 3 + 4 (Toolpath and Motion Path)</text>
+  <text class="label-sub" x="162" y="288" dominant-baseline="central">Full pipeline · Simulation viewer · Architect approval · Notifications</text>
+
+  <!-- S7 -->
+  <circle class="dot" cx="100" cy="318" r="5"/>
+  <line class="connector" x1="105" y1="318" x2="150" y2="318"/>
+  <rect class="row-rect" x="150" y="300" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="314" dominant-baseline="central" fill="#085041">S7 · Hardware capability modeling + job dispatch</text>
+  <text class="label-sub" x="162" y="328" dominant-baseline="central">Capability profiles · Fleet Manager dispatch · Validation</text>
+
+  <!-- S8 -->
+  <circle class="dot" cx="100" cy="358" r="5"/>
+  <line class="connector" x1="105" y1="358" x2="150" y2="358"/>
+  <rect class="row-rect" x="150" y="340" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="354" dominant-baseline="central" fill="#085041">S8 · Full job + print task lifecycle</text>
+  <text class="label-sub" x="162" y="368" dominant-baseline="central">State machines · Abort recording · Restart workflow</text>
+
+  <!-- S9 -->
+  <circle class="dot" cx="100" cy="398" r="5"/>
+  <line class="connector" x1="105" y1="398" x2="150" y2="398"/>
+  <rect class="row-rect" x="150" y="380" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="394" dominant-baseline="central" fill="#085041">S9 · Ground scanning lifecycle + pre-job health checks</text>
+  <text class="label-sub" x="162" y="408" dominant-baseline="central">Scan state machine · Job gating · Health check workflow</text>
+
+  <!-- S10 -->
+  <circle class="dot" cx="100" cy="438" r="5"/>
+  <line class="connector" x1="105" y1="438" x2="150" y2="438"/>
+  <rect class="row-rect" x="150" y="420" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="434" dominant-baseline="central" fill="#085041">S10 · Site Operator interface completion</text>
+  <text class="label-sub" x="162" y="448" dominant-baseline="central">Complete operator UI · Real-time monitoring · Speed overrides</text>
+
+  <!-- S11 -->
+  <circle class="dot" cx="100" cy="478" r="5"/>
+  <line class="connector" x1="105" y1="478" x2="150" y2="478"/>
+  <rect class="row-rect" x="150" y="460" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="474" dominant-baseline="central" fill="#085041">S11 · Fleet Manager + Admin interface completion</text>
+  <text class="label-sub" x="162" y="488" dominant-baseline="central">Fleet Manager + Admin interfaces complete</text>
+
+  <!-- S12 -->
+  <circle class="dot" cx="100" cy="518" r="5"/>
+  <line class="connector" x1="105" y1="518" x2="150" y2="518"/>
+  <rect class="row-rect" x="150" y="500" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="514" dominant-baseline="central" fill="#085041">S12 · Local version registry + Phase 2 integration testing</text>
+  <text class="label-sub" x="162" y="528" dominant-baseline="central">Version registry · Full integration test suite</text>
+
+  <!-- End -->
+  <circle class="end-outer" cx="100" cy="558" r="7"/>
+  <circle class="end-inner" cx="100" cy="558" r="3"/>
+  <text class="label-end" x="116" y="562">Phase 2 complete · week 12</text>
+</svg>

@@ -1,0 +1,100 @@
+<svg width="100%" viewBox="0 0 680 560" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: sans-serif; fill: #1a1915; }
+    .label-title { font-size: 14px; font-weight: 500; }
+    .label-sub { font-size: 12px; fill: #BA7517; }
+    .label-wks { font-size: 11px; fill: #BA7517; opacity: 0.5; }
+    .label-phase { font-size: 15px; font-weight: 500; fill: #633806; }
+    .label-meta { font-size: 12px; fill: #BA7517; }
+    .label-end { font-size: 12px; fill: #BA7517; opacity: 0.6; }
+    .spine { stroke: #888; stroke-width: 1; opacity: 0.2; }
+    .connector { stroke: #BA7517; stroke-width: 0.5; opacity: 0.5; }
+    .row-rect { fill: #BA7517; fill-opacity: 0.08; stroke: #BA7517; stroke-width: 0.5; stroke-opacity: 0.4; }
+    .dot { fill: #BA7517; opacity: 0.85; }
+    .end-outer { fill: none; stroke: #BA7517; stroke-width: 1.5; opacity: 0.5; }
+    .end-inner { fill: #BA7517; opacity: 0.5; }
+  </style>
+
+  <rect x="40" y="18" width="8" height="8" rx="1" fill="#BA7517"/>
+  <text class="label-phase" x="54" y="28">Phase 4 — Fleet Management and AI</text>
+  <text class="label-meta" x="54" y="44">9 sprints · 2 weeks each · 18 weeks</text>
+
+  <line class="spine" x1="100" y1="60" x2="100" y2="520"/>
+
+  <!-- S1 -->
+  <circle class="dot" cx="100" cy="78" r="5"/>
+  <line class="connector" x1="105" y1="78" x2="150" y2="78"/>
+  <rect class="row-rect" x="150" y="60" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="74" dominant-baseline="central" fill="#633806">S1 · Fleet Management Dashboard</text>
+  <text class="label-sub" x="162" y="88" dominant-baseline="central">Real-time fleet status · Multi-site visibility · Offline alerts</text>
+  <text class="label-wks" x="634" y="82" text-anchor="end">wks 1–2</text>
+
+  <!-- S2 -->
+  <circle class="dot" cx="100" cy="128" r="5"/>
+  <line class="connector" x1="105" y1="128" x2="150" y2="128"/>
+  <rect class="row-rect" x="150" y="110" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="124" dominant-baseline="central" fill="#633806">S2 · Operational telemetry collection</text>
+  <text class="label-sub" x="162" y="138" dominant-baseline="central">Telemetry capture · Cloud storage · Anomaly-windowed capture</text>
+  <text class="label-wks" x="634" y="132" text-anchor="end">wks 3–4</text>
+
+  <!-- S3 -->
+  <circle class="dot" cx="100" cy="178" r="5"/>
+  <line class="connector" x1="105" y1="178" x2="150" y2="178"/>
+  <rect class="row-rect" x="150" y="160" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="174" dominant-baseline="central" fill="#633806">S3 · AI/ML infrastructure</text>
+  <text class="label-sub" x="162" y="188" dominant-baseline="central">Training pipeline · Model serving · Deployment workflow · E2E verified</text>
+  <text class="label-wks" x="634" y="182" text-anchor="end">wks 5–6</text>
+
+  <!-- S4 -->
+  <circle class="dot" cx="100" cy="228" r="5"/>
+  <line class="connector" x1="105" y1="228" x2="150" y2="228"/>
+  <rect class="row-rect" x="150" y="210" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="224" dominant-baseline="central" fill="#633806">S4 · Anomaly detection model</text>
+  <text class="label-sub" x="162" y="238" dominant-baseline="central">Model trained + deployed · Alerts in Fleet Manager dashboard</text>
+  <text class="label-wks" x="634" y="232" text-anchor="end">wks 7–8</text>
+
+  <!-- S5 -->
+  <circle class="dot" cx="100" cy="278" r="5"/>
+  <line class="connector" x1="105" y1="278" x2="150" y2="278"/>
+  <rect class="row-rect" x="150" y="260" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="274" dominant-baseline="central" fill="#633806">S5 · Print quality assessment model</text>
+  <text class="label-sub" x="162" y="288" dominant-baseline="central">Model trained + deployed · Per-layer quality alerts in dashboard</text>
+  <text class="label-wks" x="634" y="282" text-anchor="end">wks 9–10</text>
+
+  <!-- S6 -->
+  <circle class="dot" cx="100" cy="328" r="5"/>
+  <line class="connector" x1="105" y1="328" x2="150" y2="328"/>
+  <rect class="row-rect" x="150" y="310" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="324" dominant-baseline="central" fill="#633806">S6 · Plugin-style hardware abstraction layer</text>
+  <text class="label-sub" x="162" y="338" dominant-baseline="central">Plugin interface · Existing hardware migrated · Developer docs</text>
+  <text class="label-wks" x="634" y="332" text-anchor="end">wks 11–12</text>
+
+  <!-- S7 -->
+  <circle class="dot" cx="100" cy="378" r="5"/>
+  <line class="connector" x1="105" y1="378" x2="150" y2="378"/>
+  <rect class="row-rect" x="150" y="360" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="374" dominant-baseline="central" fill="#633806">S7 · Hardware-in-the-loop testing framework</text>
+  <text class="label-sub" x="162" y="388" dominant-baseline="central">HIL harness in CI · Machine control + print execution tests</text>
+  <text class="label-wks" x="634" y="382" text-anchor="end">wks 13–14</text>
+
+  <!-- S8 -->
+  <circle class="dot" cx="100" cy="428" r="5"/>
+  <line class="connector" x1="105" y1="428" x2="150" y2="428"/>
+  <rect class="row-rect" x="150" y="410" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="424" dominant-baseline="central" fill="#633806">S8 · Fleet management completion</text>
+  <text class="label-sub" x="162" y="438" dominant-baseline="central">Fleet-wide job overview · Historical data · Fleet update management</text>
+  <text class="label-wks" x="634" y="432" text-anchor="end">wks 15–16</text>
+
+  <!-- S9 -->
+  <circle class="dot" cx="100" cy="478" r="5"/>
+  <line class="connector" x1="105" y1="478" x2="150" y2="478"/>
+  <rect class="row-rect" x="150" y="460" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="474" dominant-baseline="central" fill="#633806">S9 · Integration testing + security review + documentation</text>
+  <text class="label-sub" x="162" y="488" dominant-baseline="central">Full integration tests · Security review · Developer onboarding docs</text>
+  <text class="label-wks" x="634" y="482" text-anchor="end">wks 17–18</text>
+
+  <!-- End -->
+  <circle class="end-outer" cx="100" cy="518" r="7"/>
+  <circle class="end-inner" cx="100" cy="518" r="3"/>
+  <text class="label-end" x="116" y="522">Phase 4 complete · week 18</text>
+</svg>

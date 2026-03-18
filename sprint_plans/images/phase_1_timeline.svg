@@ -1,0 +1,87 @@
+<svg width="100%" viewBox="0 0 680 440" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: sans-serif; fill: #1a1915; }
+    .label-title { font-size: 14px; font-weight: 500; }
+    .label-sub { font-size: 12px; fill: #534AB7; }
+    .label-phase { font-size: 15px; font-weight: 500; fill: #3C3489; }
+    .label-meta { font-size: 12px; fill: #534AB7; }
+    .label-end { font-size: 12px; fill: #534AB7; opacity: 0.6; }
+    .spine { stroke: #888; stroke-width: 1; opacity: 0.2; }
+    .connector { stroke: #534AB7; stroke-width: 0.5; opacity: 0.5; }
+    .row-rect { fill: #534AB7; fill-opacity: 0.08; stroke: #534AB7; stroke-width: 0.5; stroke-opacity: 0.4; }
+    .dot { fill: #534AB7; opacity: 0.85; }
+    .end-outer { fill: none; stroke: #534AB7; stroke-width: 1.5; opacity: 0.5; }
+    .end-inner { fill: #534AB7; opacity: 0.5; }
+    .accent { fill: #534AB7; }
+    .accent-sub { fill: #AFA9EC; font-size: 11px; }
+  </style>
+
+  <!-- Header -->
+  <rect x="40" y="18" width="8" height="8" rx="1" fill="#534AB7"/>
+  <text class="label-phase" x="54" y="28">Phase 1 — Stabilisation &amp; Foundation</text>
+  <text class="label-meta" x="54" y="44">8 sprints · 1 week each · 8 weeks</text>
+
+  <!-- Spine -->
+  <line class="spine" x1="100" y1="60" x2="100" y2="400"/>
+
+  <!-- S1 -->
+  <circle class="dot" cx="100" cy="78" r="5"/>
+  <line class="connector" x1="105" y1="78" x2="150" y2="78"/>
+  <rect class="row-rect" x="150" y="60" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="74" dominant-baseline="central" fill="#3C3489">S1 · Architecture audit and refactoring plan</text>
+  <text class="label-sub" x="162" y="88" dominant-baseline="central">Architecture baseline · Three-tier decomposition · API contracts</text>
+
+  <!-- S2 -->
+  <circle class="dot" cx="100" cy="118" r="5"/>
+  <line class="connector" x1="105" y1="118" x2="150" y2="118"/>
+  <rect class="row-rect" x="150" y="100" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="114" dominant-baseline="central" fill="#3C3489">S2 · Refactor Orchestration and Edge tiers</text>
+  <text class="label-sub" x="162" y="128" dominant-baseline="central">Orch + Edge services extracted · Inter-tier API boundaries enforced</text>
+
+  <!-- S3 -->
+  <circle class="dot" cx="100" cy="158" r="5"/>
+  <line class="connector" x1="105" y1="158" x2="150" y2="158"/>
+  <rect class="row-rect" x="150" y="140" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="154" dominant-baseline="central" fill="#3C3489">S3 · Refactor Application tier + database upgrade</text>
+  <text class="label-sub" x="162" y="168" dominant-baseline="central">App tier extracted · PostgreSQL with migrations and encryption</text>
+
+  <!-- S4 -->
+  <circle class="dot" cx="100" cy="198" r="5"/>
+  <line class="connector" x1="105" y1="198" x2="150" y2="198"/>
+  <rect class="row-rect" x="150" y="180" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="194" dominant-baseline="central" fill="#3C3489">S4 · Structured logging framework</text>
+  <text class="label-sub" x="162" y="208" dominant-baseline="central">JSON-structured logs · Job-correlated IDs · Crash reporting</text>
+
+  <!-- S5 -->
+  <circle class="dot" cx="100" cy="238" r="5"/>
+  <line class="connector" x1="105" y1="238" x2="150" y2="238"/>
+  <rect class="row-rect" x="150" y="220" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="234" dominant-baseline="central" fill="#3C3489">S5 · Diagnostic data capture</text>
+  <text class="label-sub" x="162" y="248" dominant-baseline="central">Five-category diagnostic record per job · Retention policies</text>
+
+  <!-- S6 -->
+  <circle class="dot" cx="100" cy="278" r="5"/>
+  <line class="connector" x1="105" y1="278" x2="150" y2="278"/>
+  <rect class="row-rect" x="150" y="260" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="274" dominant-baseline="central" fill="#3C3489">S6 · Diagnostic report export + enforced homing</text>
+  <text class="label-sub" x="162" y="288" dominant-baseline="central">PDF/CSV report export · Step-locked homing workflow</text>
+
+  <!-- S7 -->
+  <circle class="dot" cx="100" cy="318" r="5"/>
+  <line class="connector" x1="105" y1="318" x2="150" y2="318"/>
+  <rect class="row-rect" x="150" y="300" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="314" dominant-baseline="central" fill="#3C3489">S7 · Mender packaging + A/B partition layout</text>
+  <text class="label-sub" x="162" y="328" dominant-baseline="central">Signed .mender artifacts from CI · A/B partition on IPC</text>
+
+  <!-- S8 -->
+  <circle class="dot" cx="100" cy="358" r="5"/>
+  <line class="connector" x1="105" y1="358" x2="150" y2="358"/>
+  <rect class="row-rect" x="150" y="340" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="354" dominant-baseline="central" fill="#3C3489">S8 · Mender offline update + test coverage baseline</text>
+  <text class="label-sub" x="162" y="368" dominant-baseline="central">Mender client on IPC · USB update procedure · Coverage enforced in CI</text>
+
+  <!-- End -->
+  <circle class="end-outer" cx="100" cy="398" r="7"/>
+  <circle class="end-inner" cx="100" cy="398" r="3"/>
+  <text class="label-end" x="116" y="402">Phase 1 complete · week 8</text>
+</svg>

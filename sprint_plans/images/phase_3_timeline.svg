@@ -1,0 +1,83 @@
+<svg width="100%" viewBox="0 0 680 440" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: sans-serif; fill: #1a1915; }
+    .label-title { font-size: 14px; font-weight: 500; }
+    .label-sub { font-size: 12px; fill: #185FA5; }
+    .label-phase { font-size: 15px; font-weight: 500; fill: #0C447C; }
+    .label-meta { font-size: 12px; fill: #185FA5; }
+    .label-end { font-size: 12px; fill: #185FA5; opacity: 0.6; }
+    .spine { stroke: #888; stroke-width: 1; opacity: 0.2; }
+    .connector { stroke: #185FA5; stroke-width: 0.5; opacity: 0.5; }
+    .row-rect { fill: #185FA5; fill-opacity: 0.08; stroke: #185FA5; stroke-width: 0.5; stroke-opacity: 0.4; }
+    .dot { fill: #185FA5; opacity: 0.85; }
+    .end-outer { fill: none; stroke: #185FA5; stroke-width: 1.5; opacity: 0.5; }
+    .end-inner { fill: #185FA5; opacity: 0.5; }
+  </style>
+
+  <rect x="40" y="18" width="8" height="8" rx="1" fill="#185FA5"/>
+  <text class="label-phase" x="54" y="28">Phase 3 — Cloud-Hosted Orchestration and OTA Updates</text>
+  <text class="label-meta" x="54" y="44">8 sprints · 1 week each · 8 weeks</text>
+
+  <line class="spine" x1="100" y1="60" x2="100" y2="400"/>
+
+  <!-- S1 -->
+  <circle class="dot" cx="100" cy="78" r="5"/>
+  <line class="connector" x1="105" y1="78" x2="150" y2="78"/>
+  <rect class="row-rect" x="150" y="60" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="74" dominant-baseline="central" fill="#0C447C">S1 · Cloud infrastructure + Orchestration Tier deployment</text>
+  <text class="label-sub" x="162" y="88" dominant-baseline="central">Cloud infra provisioned · Orch Tier deployed · On-prem artifact</text>
+
+  <!-- S2 -->
+  <circle class="dot" cx="100" cy="118" r="5"/>
+  <line class="connector" x1="105" y1="118" x2="150" y2="118"/>
+  <rect class="row-rect" x="150" y="100" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="114" dominant-baseline="central" fill="#0C447C">S2 · Edge-cloud sync protocol</text>
+  <text class="label-sub" x="162" y="128" dominant-baseline="central">Sync protocol · Offline operation · Reconnection sync</text>
+
+  <!-- S3 -->
+  <circle class="dot" cx="100" cy="158" r="5"/>
+  <line class="connector" x1="105" y1="158" x2="150" y2="158"/>
+  <rect class="row-rect" x="150" y="140" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="154" dominant-baseline="central" fill="#0C447C">S3 · Remote access + Application Tier on cloud</text>
+  <text class="label-sub" x="162" y="168" dominant-baseline="central">Remote access for all roles · Real-time print progress</text>
+
+  <!-- S4 -->
+  <circle class="dot" cx="100" cy="198" r="5"/>
+  <line class="connector" x1="105" y1="198" x2="150" y2="198"/>
+  <rect class="row-rect" x="150" y="180" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="194" dominant-baseline="central" fill="#0C447C">S4 · Concurrent toolpath processing</text>
+  <text class="label-sub" x="162" y="208" dominant-baseline="central">Pipeline on cloud compute · Concurrent runs · IPC offloaded</text>
+
+  <!-- S5 -->
+  <circle class="dot" cx="100" cy="238" r="5"/>
+  <line class="connector" x1="105" y1="238" x2="150" y2="238"/>
+  <rect class="row-rect" x="150" y="220" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="234" dominant-baseline="central" fill="#0C447C">S5 · Cloud data migration + replication</text>
+  <text class="label-sub" x="162" y="248" dominant-baseline="central">Cloud as system of record · Edge fallback · Data migrated</text>
+
+  <!-- S6 -->
+  <circle class="dot" cx="100" cy="278" r="5"/>
+  <line class="connector" x1="105" y1="278" x2="150" y2="278"/>
+  <rect class="row-rect" x="150" y="260" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="274" dominant-baseline="central" fill="#0C447C">S6 · OTA software update via Mender</text>
+  <text class="label-sub" x="162" y="288" dominant-baseline="central">Mender Server · OTA delivery · Admin console update controls</text>
+
+  <!-- S7 -->
+  <circle class="dot" cx="100" cy="318" r="5"/>
+  <line class="connector" x1="105" y1="318" x2="150" y2="318"/>
+  <rect class="row-rect" x="150" y="300" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="314" dominant-baseline="central" fill="#0C447C">S7 · OTA firmware update + centralised version registry</text>
+  <text class="label-sub" x="162" y="328" dominant-baseline="central">Firmware OTA · Fleet-wide version registry</text>
+
+  <!-- S8 -->
+  <circle class="dot" cx="100" cy="358" r="5"/>
+  <line class="connector" x1="105" y1="358" x2="150" y2="358"/>
+  <rect class="row-rect" x="150" y="340" width="490" height="36" rx="4"/>
+  <text class="label-title" x="162" y="354" dominant-baseline="central" fill="#0C447C">S8 · Phase 3 integration testing + security review</text>
+  <text class="label-sub" x="162" y="368" dominant-baseline="central">Integration tests · Offline resilience · Security review</text>
+
+  <!-- End -->
+  <circle class="end-outer" cx="100" cy="398" r="7"/>
+  <circle class="end-inner" cx="100" cy="398" r="3"/>
+  <text class="label-end" x="116" y="402">Phase 3 complete · week 8</text>
+</svg>
