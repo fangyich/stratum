@@ -11,6 +11,8 @@ Sprints in this document are numbered from 1. Cross-phase dependencies reference
 Sprint estimates assume a consistent team velocity and are intended as a planning baseline.
 
 
+![Phase 4 Sprint Timeline](images/phase_4_timeline.svg)
+
 This document covers Phase 4 of the Stratum transition. Sprint length is **2 weeks**. Sprint numbers continue from Phase 3 (which ended at Sprint 28).
 
 Phases 1–3 are covered in a separate document with 1-week sprints. Phase 4 begins once Sprint 28 (Phase 3 integration testing and security review) is complete.

@@ -10,6 +10,8 @@ Sprints in this document are numbered from 1. Cross-phase dependencies reference
 
 Sprint estimates assume a consistent team velocity and are intended as a planning baseline.
 
+![Phase 3 Sprint Timeline](images/phase_3_timeline.svg)
+
 ---
 
 

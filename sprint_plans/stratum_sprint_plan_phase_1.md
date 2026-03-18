@@ -8,6 +8,8 @@
 
 Sprint estimates assume a consistent team velocity and are intended as a planning baseline. Dependencies between sprints are noted where a sprint cannot begin until a prior sprint's output is available.
 
+![Phase 1 Sprint Timeline](images/phase_1_timeline.svg)
+
 ---
 
 ### Sprint 1 — Architecture Audit and Refactoring Plan
