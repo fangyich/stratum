@@ -51,15 +51,16 @@ Sprint estimates assume a consistent team velocity and are intended as a plannin
 - TLS enabled for all communication between operator devices and the Application-tier API
 - Self-signed certificate and private CA generation supported via `platform_wizard`
 - Inter-service communication authenticated and encrypted across process boundaries on the IPC
-- All four role-specific UI shells in place in `dcrafter_gui`, each routing to the correct interface based on authenticated role
+- All four role-specific UI shells in place in `dcrafter_gui`, each routing to the correct backend based on authenticated role: the Site Operator shell routes to the Application Tier only; the Architect, Fleet Manager, and Admin shells route through the Orchestration Tier
 
 **Tasks:**
 - Generate and provision TLS certificates via `platform_wizard`; support self-signed CA for on-premises deployments
 - Configure the Application-tier API to serve over HTTPS only; redirect HTTP to HTTPS
 - Enable mutual TLS or equivalent authentication for inter-service communication within the IPC where it crosses a process boundary
-- Refactor `dcrafter_gui` routing to direct each authenticated role to its dedicated interface shell
+- Refactor `dcrafter_gui` routing to direct each authenticated role to its dedicated interface shell, with the Site Operator shell connecting only to the Application Tier and the remaining shells connecting through the Orchestration Tier
 - Implement the four interface shells with correct navigation structure and placeholder sections for features delivered in subsequent sprints
 - Verify that each role cannot navigate to sections outside their permission boundary
+- Verify that the Site Operator shell remains accessible and functional when the Orchestration Tier is stopped
 
 **Depends on:** Sprint 1
 
@@ -247,12 +248,13 @@ Sprint estimates assume a consistent team velocity and are intended as a plannin
 
 ### Sprint 10 — Site Operator Interface Completion
 
-**Goal:** Complete the Site Operator interface: all operator workflows fully functional through the role-specific UI, including real-time print monitoring and speed overrides.
+**Goal:** Complete the Site Operator interface: all operator workflows fully functional through the role-specific UI, including real-time print monitoring and speed overrides. The interface must remain fully operational when the Orchestration Tier is unavailable.
 
 **Deliverables:**
 - Site Operator interface complete: machine control, task queue, real-time print monitoring, speed overrides, guided homing and scanning workflows, diagnostic report export
 - All existing operator workflows (enable, home, scan, print, abort) accessible and fully functional through the new interface
 - Real-time print monitoring: current layer, segment, completion percentage, estimated time remaining
+- Site Operator interface confirmed fully operational when the Orchestration Tier is unavailable
 
 **Tasks:**
 - Complete machine control section: Enable System, E-Stop, jogging controls
@@ -263,6 +265,7 @@ Sprint estimates assume a consistent team velocity and are intended as a plannin
 - Integrate ground scanning controls (from Sprint 9) into the Site Operator interface
 - Integrate diagnostic report export controls (from Phase 1 Sprint 6) into the Site Operator interface
 - Run full end-to-end operator workflow test across the complete interface: enable → home → health check → create scan task → scan → dispatch job → print → abort → restart
+- Verify that all Site Operator workflows remain fully functional when the Orchestration Tier is stopped: machine control, task queue, homing, scanning, printing, and report export must all operate without any dependency on the Orchestration Tier
 
 **Depends on:** Sprint 9
 

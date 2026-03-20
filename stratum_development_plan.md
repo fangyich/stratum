@@ -221,10 +221,10 @@ Before defining the plan, the following table summarises the most critical gaps 
 **Work required:**
 
 - Deliver four role-specific interfaces in `dcrafter_gui`, each presenting only the tools and information relevant to that role:
-  - **Site Operator interface** — machine control, task queue, real-time print monitoring, speed overrides, guided homing and scanning workflows, diagnostic report export
-  - **Architect / Project Owner interface** — IFC upload, Building Model version management, Print Configuration management, Print Project creation, pipeline status monitoring, per-stage output inspection (parsed model, slice viewer, toolpath viewer, motion path simulation), motion path approval, job status tracking
-  - **Fleet Manager interface** — job dispatch queue, hardware assignment, capability validation, job scope adjustment, fleet status for the local unit, update package management, version registry
-  - **Admin interface** — user management, RBAC configuration, system configuration, diagnostic log access, update package upload and application via Mender tooling
+  - **Site Operator interface** — machine control, task queue, real-time print monitoring, speed overrides, guided homing and scanning workflows, diagnostic report export. This interface connects only to the Application Tier and has no dependency on the Orchestration Tier; it remains fully operational when the Orchestration Tier is unavailable.
+  - **Architect / Project Owner interface** — IFC upload, Building Model version management, Print Configuration management, Print Project creation, pipeline status monitoring, per-stage output inspection (parsed model, slice viewer, toolpath viewer, motion path simulation), motion path approval, job status tracking. This interface connects to the Orchestration Tier and is unavailable when the Orchestration Tier is down.
+  - **Fleet Manager interface** — job dispatch queue, hardware assignment, capability validation, job scope adjustment, fleet status for the local unit, update package management, version registry. This interface connects to the Orchestration Tier and is unavailable when the Orchestration Tier is down.
+  - **Admin interface** — user management, RBAC configuration, system configuration, diagnostic log access, update package upload and application via Mender tooling. This interface connects to the Orchestration Tier and is unavailable when the Orchestration Tier is down.
 
 ---
 
@@ -473,22 +473,43 @@ Before defining the plan, the following table summarises the most critical gaps 
 
 ---
 
-### 4.3 AI/ML Model Lifecycle Management
+### 4.3 AI/ML Model Lifecycle Infrastructure
 
 **Problem:** There is no AI or ML functionality and no infrastructure to support it.
 
 **Work required:**
 
-- Establish a managed pipeline for training, deploying, monitoring, and updating AI/ML models using real operational telemetry as the training source
-- Initial model candidates:
-  - Print quality assessment (detecting deposition anomalies from sensor data)
-  - Anomaly detection (identifying unusual machine behaviour before it becomes a fault)
-  - Predictive maintenance (flagging components likely to require service)
+- Establish the end-to-end ML model lifecycle pipeline before any models are trained: data extraction from the telemetry store, training job orchestration, model evaluation, versioned artifact storage, deployment to the Edge Tier, inference, and monitoring
+- The infrastructure is verified end-to-end with a trivial baseline model before any real model training begins
 - Models are deployed to the Edge Tier for inference; the Orchestration Tier manages the model lifecycle (versioning, rollout, monitoring)
 
 ---
 
-### 4.4 Plugin-Style Hardware Abstraction Layer
+### 4.4 Anomaly Detection Model
+
+**Problem:** There is no mechanism to identify unusual machine behaviour before it becomes a fault.
+
+**Work required:**
+
+- Train an anomaly detection model on real operational telemetry using the infrastructure established in 4.3
+- Deploy the model to the Edge Tier for inference; surface anomaly score alerts in the Fleet Manager dashboard with links to the relevant telemetry window
+- Establish model monitoring: track inference latency, score distribution, and alert rate; alert on significant distribution shift
+
+---
+
+### 4.5 Print Quality Assessment Model
+
+**Problem:** There is no automated mechanism to detect deposition anomalies during print execution.
+
+**Work required:**
+
+- Train a print quality assessment model using sensor signals and execution trace patterns correlated with poor deposition quality
+- Deploy the model to the Edge Tier; surface per-layer quality scores and threshold breach alerts in the Fleet Manager dashboard
+- Extend model monitoring to cover the print quality model
+
+---
+
+### 4.6 Plugin-Style Hardware Abstraction Layer
 
 **Problem:** Integrating new robot types, generations, or auxiliary equipment requires changes to core platform logic.
 
@@ -503,7 +524,7 @@ Before defining the plan, the following table summarises the most critical gaps 
 
 ---
 
-### 4.5 Hardware-in-the-Loop Testing Framework
+### 4.7 Hardware-in-the-Loop Testing Framework
 
 **Problem:** There is no structured framework for testing new features against a simulated or real robot. Features involving hardware are deployed without thorough validation.
 
@@ -522,7 +543,9 @@ Before defining the plan, the following table summarises the most critical gaps 
 |---|---|
 | Fleet Management Dashboard | Real-time status of all units across all sites; offline unit tracking |
 | Operational telemetry | Systematic collection of print performance and sensor data across the fleet |
-| AI/ML lifecycle pipeline | Training, deployment, monitoring, and updating of AI/ML models |
+| AI/ML lifecycle infrastructure | End-to-end model training, deployment, inference, and monitoring pipeline |
+| Anomaly detection model | Identifies unusual machine behaviour before it becomes a fault |
+| Print quality assessment model | Detects deposition anomalies from sensor data during print execution |
 | Hardware abstraction layer | Plugin-style interface for new robot types and auxiliary equipment |
 | HIL testing framework | Structured testing environment for hardware-dependent features |
 
@@ -549,4 +572,4 @@ The following concerns apply across all phases and should be treated as ongoing 
 | **Phase 1** | Reliable, observable, updateable system | Architecture refactor, production DB, structured logging, diagnostic data capture, report export, enforced homing, Mender packaging and offline update tooling |
 | **Phase 2** | Full Stratum feature set on-premises | RBAC, authentication, TLS, role-specific interfaces, full toolpath pipeline, Building Model versioning, job lifecycle, ground scanning lifecycle, health checks |
 | **Phase 3** | Cloud-hosted orchestration and OTA updates | Cloud Orchestration Tier, remote access for all roles, concurrent toolpath processing, cloud data storage, OTA software and firmware updates, centralised version registry |
-| **Phase 4** | Fleet management and AI | Fleet dashboard, operational telemetry, AI/ML lifecycle pipeline, hardware abstraction layer, HIL testing framework |
+| **Phase 4** | Fleet management and AI | Fleet dashboard, operational telemetry, AI/ML lifecycle infrastructure, anomaly detection model, print quality assessment model, hardware abstraction layer, HIL testing framework |

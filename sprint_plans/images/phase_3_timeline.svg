@@ -1,83 +1,91 @@
-<svg width="100%" viewBox="0 0 680 440" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    text { font-family: sans-serif; fill: #1a1915; }
-    .label-title { font-size: 14px; font-weight: 500; }
-    .label-sub { font-size: 12px; fill: #185FA5; }
-    .label-phase { font-size: 15px; font-weight: 500; fill: #0C447C; }
-    .label-meta { font-size: 12px; fill: #185FA5; }
-    .label-end { font-size: 12px; fill: #185FA5; opacity: 0.6; }
-    .spine { stroke: #888; stroke-width: 1; opacity: 0.2; }
-    .connector { stroke: #185FA5; stroke-width: 0.5; opacity: 0.5; }
-    .row-rect { fill: #185FA5; fill-opacity: 0.08; stroke: #185FA5; stroke-width: 0.5; stroke-opacity: 0.4; }
-    .dot { fill: #185FA5; opacity: 0.85; }
-    .end-outer { fill: none; stroke: #185FA5; stroke-width: 1.5; opacity: 0.5; }
-    .end-inner { fill: #185FA5; opacity: 0.5; }
-  </style>
+<svg width="100%" viewBox="0 0 680 560" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
 
-  <rect x="40" y="18" width="8" height="8" rx="1" fill="#185FA5"/>
-  <text class="label-phase" x="54" y="28">Phase 3 — Cloud-Hosted Orchestration and OTA Updates</text>
-  <text class="label-meta" x="54" y="44">8 sprints · 1 week each · 8 weeks</text>
+  <g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"><rect x="40" y="18" width="8" height="8" rx="1" stroke-width="0" style="fill:rgb(12, 68, 124);stroke:rgb(133, 183, 235);color:rgb(255, 255, 255);stroke-width:0px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/></g>
+  <text x="54" y="26" fill="#0C447C" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:start;dominant-baseline:auto">Phase 3 — Cloud-Hosted Orchestration and OTA Updates</text>
+  <text x="54" y="40" fill="#185FA5" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto">8 sprints · 1 week each · 8 weeks</text>
 
-  <line class="spine" x1="100" y1="60" x2="100" y2="400"/>
+  <line x1="100" y1="56" x2="100" y2="520" stroke="var(--t)" stroke-width="1" opacity="0.15" style="fill:rgb(0, 0, 0);stroke:rgb(156, 154, 146);color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.15;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
 
   <!-- S1 -->
-  <circle class="dot" cx="100" cy="78" r="5"/>
-  <line class="connector" x1="105" y1="78" x2="150" y2="78"/>
-  <rect class="row-rect" x="150" y="60" width="490" height="36" rx="4"/>
-  <text class="label-title" x="162" y="74" dominant-baseline="central" fill="#0C447C">S1 · Cloud infrastructure + Orchestration Tier deployment</text>
-  <text class="label-sub" x="162" y="88" dominant-baseline="central">Cloud infra provisioned · Orch Tier deployed · On-prem artifact</text>
+  <circle cx="100" cy="78" r="5" fill="#185FA5" opacity="0.8" style="fill:rgb(24, 95, 165);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.8;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <line x1="105" y1="78" x2="150" y2="78" stroke="#185FA5" stroke-width="0.5" opacity="0.5" style="fill:rgb(0, 0, 0);stroke:rgb(24, 95, 165);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <g onclick="sendPrompt('Tell me more about Phase 3 Sprint 1: Cloud infrastructure and Orchestration Tier deployment')" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+    <rect x="150" y="60" width="490" height="36" rx="4" fill="#185FA5" opacity="0.08" stroke="#185FA5" stroke-width="0.5" stroke-opacity="0.4" style="fill:rgb(24, 95, 165);stroke:rgb(24, 95, 165);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.08;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <text x="162" y="74" dominant-baseline="central" fill="#0C447C" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:start;dominant-baseline:central">S1 · Cloud infrastructure + Orchestration Tier deployment</text>
+    <text x="162" y="88" dominant-baseline="central" fill="#185FA5" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:central">Cloud infra provisioned · Orch Tier deployed · On-prem artifact</text>
+  </g>
 
   <!-- S2 -->
-  <circle class="dot" cx="100" cy="118" r="5"/>
-  <line class="connector" x1="105" y1="118" x2="150" y2="118"/>
-  <rect class="row-rect" x="150" y="100" width="490" height="36" rx="4"/>
-  <text class="label-title" x="162" y="114" dominant-baseline="central" fill="#0C447C">S2 · Edge-cloud sync protocol</text>
-  <text class="label-sub" x="162" y="128" dominant-baseline="central">Sync protocol · Offline operation · Reconnection sync</text>
+  <circle cx="100" cy="118" r="5" fill="#185FA5" opacity="0.8" style="fill:rgb(24, 95, 165);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.8;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <line x1="105" y1="118" x2="150" y2="118" stroke="#185FA5" stroke-width="0.5" opacity="0.5" style="fill:rgb(0, 0, 0);stroke:rgb(24, 95, 165);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <g onclick="sendPrompt('Tell me more about Phase 3 Sprint 2: Edge-cloud sync protocol')" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+    <rect x="150" y="100" width="490" height="36" rx="4" fill="#185FA5" opacity="0.08" stroke="#185FA5" stroke-width="0.5" stroke-opacity="0.4" style="fill:rgb(24, 95, 165);stroke:rgb(24, 95, 165);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.08;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <text x="162" y="114" dominant-baseline="central" fill="#0C447C" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:start;dominant-baseline:central">S2 · Edge-cloud sync protocol</text>
+    <text x="162" y="128" dominant-baseline="central" fill="#185FA5" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:central">Sync protocol · Offline operation · Reconnection sync</text>
+  </g>
 
   <!-- S3 -->
-  <circle class="dot" cx="100" cy="158" r="5"/>
-  <line class="connector" x1="105" y1="158" x2="150" y2="158"/>
-  <rect class="row-rect" x="150" y="140" width="490" height="36" rx="4"/>
-  <text class="label-title" x="162" y="154" dominant-baseline="central" fill="#0C447C">S3 · Remote access + Application Tier on cloud</text>
-  <text class="label-sub" x="162" y="168" dominant-baseline="central">Remote access for all roles · Real-time print progress</text>
+  <circle cx="100" cy="158" r="5" fill="#185FA5" opacity="0.8" style="fill:rgb(24, 95, 165);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.8;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <line x1="105" y1="158" x2="150" y2="158" stroke="#185FA5" stroke-width="0.5" opacity="0.5" style="fill:rgb(0, 0, 0);stroke:rgb(24, 95, 165);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <g onclick="sendPrompt('Tell me more about Phase 3 Sprint 3: Orchestration Tier remote access')" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+    <rect x="150" y="140" width="490" height="36" rx="4" fill="#185FA5" opacity="0.08" stroke="#185FA5" stroke-width="0.5" stroke-opacity="0.4" style="fill:rgb(24, 95, 165);stroke:rgb(24, 95, 165);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.08;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <text x="162" y="154" dominant-baseline="central" fill="#0C447C" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:start;dominant-baseline:central">S3 · Orchestration Tier remote access</text>
+    <text x="162" y="168" dominant-baseline="central" fill="#185FA5" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:central">Architect, Fleet Manager, Admin interfaces usable from any device · Real-time print progress</text>
+  </g>
 
   <!-- S4 -->
-  <circle class="dot" cx="100" cy="198" r="5"/>
-  <line class="connector" x1="105" y1="198" x2="150" y2="198"/>
-  <rect class="row-rect" x="150" y="180" width="490" height="36" rx="4"/>
-  <text class="label-title" x="162" y="194" dominant-baseline="central" fill="#0C447C">S4 · Concurrent toolpath processing</text>
-  <text class="label-sub" x="162" y="208" dominant-baseline="central">Pipeline on cloud compute · Concurrent runs · IPC offloaded</text>
+  <circle cx="100" cy="198" r="5" fill="#185FA5" opacity="0.8" style="fill:rgb(24, 95, 165);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.8;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <line x1="105" y1="198" x2="150" y2="198" stroke="#185FA5" stroke-width="0.5" opacity="0.5" style="fill:rgb(0, 0, 0);stroke:rgb(24, 95, 165);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <g onclick="sendPrompt('Tell me more about Phase 3 Sprint 4: Concurrent toolpath processing')" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+    <rect x="150" y="180" width="490" height="36" rx="4" fill="#185FA5" opacity="0.08" stroke="#185FA5" stroke-width="0.5" stroke-opacity="0.4" style="fill:rgb(24, 95, 165);stroke:rgb(24, 95, 165);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.08;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <text x="162" y="194" dominant-baseline="central" fill="#0C447C" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:start;dominant-baseline:central">S4 · Concurrent toolpath processing</text>
+    <text x="162" y="208" dominant-baseline="central" fill="#185FA5" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:central">Pipeline on cloud compute · Concurrent runs · IPC offloaded</text>
+  </g>
 
   <!-- S5 -->
-  <circle class="dot" cx="100" cy="238" r="5"/>
-  <line class="connector" x1="105" y1="238" x2="150" y2="238"/>
-  <rect class="row-rect" x="150" y="220" width="490" height="36" rx="4"/>
-  <text class="label-title" x="162" y="234" dominant-baseline="central" fill="#0C447C">S5 · Cloud data migration + replication</text>
-  <text class="label-sub" x="162" y="248" dominant-baseline="central">Cloud as system of record · Edge fallback · Data migrated</text>
+  <circle cx="100" cy="238" r="5" fill="#185FA5" opacity="0.8" style="fill:rgb(24, 95, 165);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.8;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <line x1="105" y1="238" x2="150" y2="238" stroke="#185FA5" stroke-width="0.5" opacity="0.5" style="fill:rgb(0, 0, 0);stroke:rgb(24, 95, 165);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <g onclick="sendPrompt('Tell me more about Phase 3 Sprint 5: Cloud data migration and replication')" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+    <rect x="150" y="220" width="490" height="36" rx="4" fill="#185FA5" opacity="0.08" stroke="#185FA5" stroke-width="0.5" stroke-opacity="0.4" style="fill:rgb(24, 95, 165);stroke:rgb(24, 95, 165);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.08;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <text x="162" y="234" dominant-baseline="central" fill="#0C447C" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:start;dominant-baseline:central">S5 · Cloud data migration + replication</text>
+    <text x="162" y="248" dominant-baseline="central" fill="#185FA5" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:central">Cloud as system of record · Edge fallback · Data migrated</text>
+  </g>
 
   <!-- S6 -->
-  <circle class="dot" cx="100" cy="278" r="5"/>
-  <line class="connector" x1="105" y1="278" x2="150" y2="278"/>
-  <rect class="row-rect" x="150" y="260" width="490" height="36" rx="4"/>
-  <text class="label-title" x="162" y="274" dominant-baseline="central" fill="#0C447C">S6 · OTA software update via Mender</text>
-  <text class="label-sub" x="162" y="288" dominant-baseline="central">Mender Server · OTA delivery · Admin console update controls</text>
+  <circle cx="100" cy="278" r="5" fill="#185FA5" opacity="0.8" style="fill:rgb(24, 95, 165);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.8;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <line x1="105" y1="278" x2="150" y2="278" stroke="#185FA5" stroke-width="0.5" opacity="0.5" style="fill:rgb(0, 0, 0);stroke:rgb(24, 95, 165);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <g onclick="sendPrompt('Tell me more about Phase 3 Sprint 6: OTA software update via Mender')" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+    <rect x="150" y="260" width="490" height="36" rx="4" fill="#185FA5" opacity="0.08" stroke="#185FA5" stroke-width="0.5" stroke-opacity="0.4" style="fill:rgb(24, 95, 165);stroke:rgb(24, 95, 165);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.08;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <text x="162" y="274" dominant-baseline="central" fill="#0C447C" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:start;dominant-baseline:central">S6 · OTA software update via Mender</text>
+    <text x="162" y="288" dominant-baseline="central" fill="#185FA5" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:central">Mender Server · OTA delivery · Admin console update controls</text>
+  </g>
 
   <!-- S7 -->
-  <circle class="dot" cx="100" cy="318" r="5"/>
-  <line class="connector" x1="105" y1="318" x2="150" y2="318"/>
-  <rect class="row-rect" x="150" y="300" width="490" height="36" rx="4"/>
-  <text class="label-title" x="162" y="314" dominant-baseline="central" fill="#0C447C">S7 · OTA firmware update + centralised version registry</text>
-  <text class="label-sub" x="162" y="328" dominant-baseline="central">Firmware OTA · Fleet-wide version registry</text>
+  <circle cx="100" cy="318" r="5" fill="#185FA5" opacity="0.8" style="fill:rgb(24, 95, 165);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.8;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <line x1="105" y1="318" x2="150" y2="318" stroke="#185FA5" stroke-width="0.5" opacity="0.5" style="fill:rgb(0, 0, 0);stroke:rgb(24, 95, 165);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <g onclick="sendPrompt('Tell me more about Phase 3 Sprint 7: OTA firmware update and version registry')" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+    <rect x="150" y="300" width="490" height="36" rx="4" fill="#185FA5" opacity="0.08" stroke="#185FA5" stroke-width="0.5" stroke-opacity="0.4" style="fill:rgb(24, 95, 165);stroke:rgb(24, 95, 165);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.08;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <text x="162" y="314" dominant-baseline="central" fill="#0C447C" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:start;dominant-baseline:central">S7 · OTA firmware update + centralised version registry</text>
+    <text x="162" y="328" dominant-baseline="central" fill="#185FA5" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:central">Firmware OTA · Fleet-wide version registry</text>
+  </g>
 
   <!-- S8 -->
-  <circle class="dot" cx="100" cy="358" r="5"/>
-  <line class="connector" x1="105" y1="358" x2="150" y2="358"/>
-  <rect class="row-rect" x="150" y="340" width="490" height="36" rx="4"/>
-  <text class="label-title" x="162" y="354" dominant-baseline="central" fill="#0C447C">S8 · Phase 3 integration testing + security review</text>
-  <text class="label-sub" x="162" y="368" dominant-baseline="central">Integration tests · Offline resilience · Security review</text>
+  <circle cx="100" cy="358" r="5" fill="#185FA5" opacity="0.8" style="fill:rgb(24, 95, 165);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.8;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <line x1="105" y1="358" x2="150" y2="358" stroke="#185FA5" stroke-width="0.5" opacity="0.5" style="fill:rgb(0, 0, 0);stroke:rgb(24, 95, 165);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <g onclick="sendPrompt('Tell me more about Phase 3 Sprint 8: Integration testing and security review')" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+    <rect x="150" y="340" width="490" height="36" rx="4" fill="#185FA5" opacity="0.08" stroke="#185FA5" stroke-width="0.5" stroke-opacity="0.4" style="fill:rgb(24, 95, 165);stroke:rgb(24, 95, 165);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.08;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <text x="162" y="354" dominant-baseline="central" fill="#0C447C" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:start;dominant-baseline:central">S8 · Phase 3 integration testing + security review</text>
+    <text x="162" y="368" dominant-baseline="central" fill="#185FA5" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:central">Integration tests · Offline resilience · Security review</text>
+  </g>
 
   <!-- End -->
-  <circle class="end-outer" cx="100" cy="398" r="7"/>
-  <circle class="end-inner" cx="100" cy="398" r="3"/>
-  <text class="label-end" x="116" y="402">Phase 3 complete · week 8</text>
+  <circle cx="100" cy="398" r="7" fill="none" stroke="#185FA5" stroke-width="1.5" opacity="0.5" style="fill:none;stroke:rgb(24, 95, 165);color:rgb(255, 255, 255);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <circle cx="100" cy="398" r="3" fill="#185FA5" opacity="0.5" style="fill:rgb(24, 95, 165);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="116" y="402" fill="#185FA5" opacity="0.6" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.6;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto">Phase 3 complete · week 8</text>
+
 </svg>

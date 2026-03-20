@@ -10,7 +10,10 @@ The platform is organized across three tiers:
 
 **Edge Tier (on-robot IPC)** handles real-time, latency-sensitive operations: motion execution, sensor feedback, machine control, and local fallback when connectivity is lost. The edge layer syncs with the Orchestration Tier when available but operates independently when offline. It also accepts locally applied software and firmware updates when Orchestration Tier connectivity is unavailable.
 
-**Application Tier** provides role-specific interfaces for architects, site operators, fleet managers, and developers. These are responsive web and tablet applications that work both on-site via the robot's local WiFi and remotely via the Orchestration Tier — whether cloud-hosted or on-premises — giving each role access to the tools and information relevant to their responsibilities.
+**Application Tier** provides role-specific interfaces for architects, site operators, fleet managers, and developers:
+
+- The **Site Operator interface** runs on-site, connecting directly to the robot's local WiFi access point for real-time machine control. It does not require connectivity to the Orchestration Tier and remains fully operational when that connectivity is unavailable.
+- The **Architect, Fleet Manager, and Developer interfaces** connect to the Orchestration Tier — whether cloud-hosted or on-premises — and are intended for remote use. These roles have no operational need to be physically present on site.
 
 ---
 
