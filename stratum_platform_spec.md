@@ -8,7 +8,7 @@ The platform is organized across three tiers:
 
 **Orchestration Tier** handles everything that does not need to be on-site: project design ingestion and toolpath pre-computation, fleet orchestration, OTA update distribution, centralized data storage and analytics, AI/ML model training and lifecycle management, and multi-tenant user management with role-based access control. The Orchestration Tier is deployable as a hosted service or as an on-premises installation on customer-managed infrastructure, including fully air-gapped environments.
 
-**Edge Tier (on-robot IPC)** handles real-time, latency-sensitive operations: motion execution, sensor feedback, machine control, and local fallback when connectivity is lost. The edge layer syncs with the Orchestration Tier when available but operates independently when offline. It also accepts locally applied software and firmware updates when Orchestration Tier connectivity is unavailable.
+**Edge Tier** handles real-time, latency-sensitive operations: motion execution, sensor feedback, machine control, and local fallback when connectivity is lost. The Edge Tier is deployed on each robot's onboard industrial PC and must remain co-located with the hardware it controls. It syncs with the Orchestration Tier when available but operates independently when offline. It also accepts locally applied software and firmware updates when Orchestration Tier connectivity is unavailable.
 
 **Application Tier** provides role-specific interfaces for architects, site operators, fleet managers, and developers:
 
