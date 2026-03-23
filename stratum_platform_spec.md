@@ -8,7 +8,7 @@ The platform is organized across three tiers:
 
 **Orchestration Tier** handles everything that does not need to be on-site: project design ingestion and toolpath pre-computation, fleet orchestration, OTA update distribution, centralized data storage and analytics, AI/ML model training and lifecycle management, and multi-tenant user management with role-based access control. The Orchestration Tier is deployable as a hosted service or as an on-premises installation on customer-managed infrastructure, including fully air-gapped environments.
 
-**Edge Tier** handles real-time, latency-sensitive operations: motion execution, sensor feedback, machine control, and local fallback when connectivity is lost. The Edge Tier is deployed on each robot's onboard industrial PC and must remain co-located with the hardware it controls. It syncs with the Orchestration Tier when available but operates independently when offline. It also accepts locally applied software and firmware updates when Orchestration Tier connectivity is unavailable.
+**Edge Tier (on-robot IPC)** handles real-time, latency-sensitive operations: motion execution, sensor feedback, machine control, and local fallback when connectivity is lost. The edge layer syncs with the Orchestration Tier when available but operates independently when offline. It also accepts locally applied software and firmware updates when Orchestration Tier connectivity is unavailable.
 
 **Application Tier** provides role-specific interfaces for architects, site operators, fleet managers, and developers:
 
@@ -68,6 +68,79 @@ All communication — on the local network and over the uplink to the Orchestrat
 ---
 
 ## System Behaviour
+
+### Tier Interaction Model
+
+#### Overview
+
+The three tiers interact through two distinct interfaces:
+
+- The **Orchestration–Edge interface** carries job packages from the Orchestration Tier to the edge tier, and diagnostic and state data from the edge tier back to the Orchestration Tier. Communication occurs over the robot's secondary uplink when connectivity is available. When connectivity is unavailable, the edge tier operates from its locally cached job package and buffers outbound state for later sync.
+- The **Edge–Application interface** is a local API exposed by the edge tier over the robot's dedicated WiFi access point. The Site Operator interface communicates exclusively through this API. It does not require, and is not affected by, Orchestration Tier connectivity.
+
+These two interfaces are independent. The operator's ability to control the robot is determined solely by the Edge–Application interface and the robot's local network — not by whether the Orchestration Tier is reachable.
+
+#### Job Package
+
+A job package is the self-contained unit assembled by the Orchestration Tier at dispatch time and delivered to the edge tier over the secondary uplink. It contains everything the edge tier needs to execute the job and support the operator's pre-print and print workflows without any further communication with the Orchestration Tier.
+
+A job package includes:
+
+- **Job identity and metadata** — job identifier, Print Project reference, target robot type and generation, job scope (layer and segment range), and site-specific notes.
+- **Motion path** — the approved, robot-specific motion path output from Stage 4 of the toolpath generation pipeline, covering the full layer and segment scope of the job.
+- **Task manifest** — the ordered list of tasks the edge tier is required to execute for this job, including a ground scanning task in Queued state and a print task in a pre-Ready state pending ground scan completion. The task manifest is the authoritative definition of what the robot must do; the edge tier does not derive or construct tasks independently.
+- **Operator instructions** — site-specific notes and any job-level guidance the Fleet Manager has attached, surfaced to the operator in the job review screen.
+- **Capability assertion** — a record of the capability profile the job was validated against at dispatch time, retained on the edge tier for local reference.
+
+The job package is cryptographically signed by the Orchestration Tier. The edge tier verifies the signature before accepting the package. A package that fails verification is rejected and the job is not staged.
+
+Once delivered, the job package is cached on the robot's local storage. The edge tier operates entirely from this local cache for the duration of the job. No re-fetching of motion path data or task definitions from the Orchestration Tier is required or attempted during execution.
+
+#### Task Queue
+
+The edge tier maintains a local task queue populated from the task manifest in the job package. Tasks are ordered and gated: a task does not become executable until all preceding tasks in the manifest have reached a terminal state (Completed or Aborted).
+
+For a standard print job, the task queue contains two tasks in order:
+
+1. **Ground scanning task** — must reach Completed before the print task becomes executable.
+2. **Print task** — becomes executable once the ground scanning task is Completed.
+
+The task queue is managed entirely by the edge tier. The operator interface reads queue state and sends control commands (start, abort, resume, E-Stop) through the Edge–Application interface. The Orchestration Tier does not issue task commands directly; it communicates intent through the job package at dispatch time.
+
+When a ground scanning task is Aborted, the edge tier automatically inserts a new ground scanning task in Queued state ahead of the print task, so the operator can retry without manual intervention and without Orchestration Tier involvement.
+
+#### Edge–Application Interface
+
+The edge tier exposes a local API over the robot's dedicated WiFi access point. This is the sole communication channel between the Site Operator interface and the robot. All operator interactions — job review, task control, speed overrides, E-Stop, restart confirmation — are mediated through this interface.
+
+The interface provides:
+
+- **Job state and task queue reads** — the operator interface retrieves the current job state, task queue contents, and task states to render the guided workflow and control surfaces.
+- **Task control commands** — start, abort, pause, resume. Commands are accepted only when the task queue state permits them; the edge tier enforces sequencing rules and rejects commands that would violate them.
+- **Operator event submission** — structured records for human-in-the-loop confirmations (job acknowledgement, lintel placement, restart position confirmation). These are written to the edge tier's operator event log and included in the diagnostic record.
+- **Speed override** — print speed and extrusion speed can be adjusted by the operator within bounds defined in the job's Print Configuration. Overrides take effect immediately and are recorded in the command log.
+- **E-Stop** — a dedicated control that immediately halts all robot motion regardless of task state. Triggers the same abort path as a hardware E-Stop button event.
+- **Telemetry and status reads** — live hardware telemetry, servo state, and sensor readings for display in the operator interface.
+
+The Edge–Application interface is available as long as the robot's WiFi access point is operational, regardless of secondary uplink or Orchestration Tier connectivity.
+
+#### State Synchronisation
+
+The edge tier maintains an outbound sync queue of state changes to be reported to the Orchestration Tier. Sync occurs over the secondary uplink whenever connectivity is available. If connectivity is unavailable, changes accumulate in the sync queue and are flushed in order when connectivity is restored.
+
+State changes that are synced to the Orchestration Tier include:
+
+- **Task state transitions** — every change in ground scanning and print task state, with timestamp.
+- **Job state transitions** — derived from task state transitions per the state propagation rules defined in Print Task States.
+- **Operator events** — job acknowledgement, lintel placement confirmations, restart position confirmations, and speed overrides, each with timestamp and operator identity.
+- **Diagnostic data** — command log entries, execution trace records, controller log entries, hardware telemetry snapshots, and operator event log entries, subject to the retention and telemetry capture policies defined in Diagnostic Data Correlation and Retention.
+- **Ground surface data** — the output of a completed ground scanning task, registered against the job identifier.
+
+Sync is append-only from the edge tier's perspective. The edge tier does not receive updated task definitions or motion path data from the Orchestration Tier mid-job; the job package delivered at dispatch is the sole source of execution inputs. The only post-dispatch communication from the Orchestration Tier to the edge tier is OTA update delivery, which is handled independently of job execution.
+
+The Orchestration Tier treats synced state as authoritative for the purposes of job tracking, fleet visibility, and diagnostic record construction. Where the Orchestration Tier has no connectivity to a robot, it retains the last synced state and flags the unit as connectivity-impaired, consistent with FM-004.
+
+---
 
 ### Building Model Versioning
 
@@ -169,12 +242,12 @@ Hardware is modeled via a configurable capability profile. A robot type and gene
 
 A ground scanning task moves through a defined set of states during its lifecycle:
 
-- **Queued** — the task has been submitted to the robot's local task queue and is waiting to be started by the operator.
+- **Queued** — the task has been automatically created by the Orchestration Tier at the point the print job is dispatched, and delivered to the edge tier as part of the job package. It is available for operator execution via the robot's local network regardless of subsequent Orchestration Tier connectivity.
 - **Active** — the task is currently being executed by the robot unit.
-- **Completed** — the task finished successfully. The resulting ground surface data is stored and registered against the associated print job.
-- **Aborted** — the task was stopped by the operator or terminated due to a fault before completion. No ground surface data is registered. The operator may create a new ground scanning task and repeat the scan.
+- **Completed** — the task finished successfully. The resulting ground surface data is stored and registered against the associated print job at the edge tier, and synced to the Orchestration Tier when connectivity is available.
+- **Aborted** — the task was stopped by the operator or terminated due to a fault before completion. No ground surface data is registered. The edge tier automatically inserts a new ground scanning task in **Queued** state ahead of the print task so the operator can retry without additional steps and without requiring Orchestration Tier connectivity. Task state is synced to the Orchestration Tier when connectivity is restored.
 
-The associated print job remains in **Pending Dispatch** state while a ground scanning task is Queued or Active. The job may only be advanced to hardware assignment and execution once a ground scanning task for it has reached Completed state.
+The associated print job remains in **Dispatched** state while a ground scanning task is Queued or Active. The job may only be advanced to the operator's pre-print workflow once a ground scanning task for it has reached Completed state.
 
 ### Print Task States
 
@@ -201,6 +274,7 @@ Print task state changes propagate to the parent print job state as follows:
 A print job moves through a defined set of states during its lifecycle:
 
 - **Pending Dispatch** — the job has been created from an approved project and is awaiting hardware assignment by the Fleet Manager.
+- **Dispatched** — the job has been assigned to a robot unit by the Fleet Manager. The Orchestration Tier assembles a job package and delivers it to the edge tier over the secondary uplink. A ground scanning task in **Queued** state is included in the job package task manifest. The job remains in this state until the ground scanning task reaches **Completed**, at which point the operator's pre-print workflow (homing, job acknowledgement) becomes available. All ground scanning interactions from this point are handled at the edge tier and do not require Orchestration Tier connectivity.
 - **Active** — the job has been dispatched to a robot unit and is being executed. This state covers the Ready and Running print task states and persists until the task reaches a terminal state.
 - **Paused** — the print task has been deliberately suspended by the operator. The job can be resumed from the point of suspension.
 - **Aborted** — the print task was terminated due to an E-Stop, a fault, or manual intervention. The platform records the execution point at which the abort occurred. An aborted job cannot be resumed; it must be restarted.
@@ -256,8 +330,8 @@ The following assumptions form the basis for all system design decisions.
 - **SOP-002:** My local connection to the robot is stable and responsive enough for real-time print control, and all communication between my device and the robot is secure.
 - **SOP-003:** I can run automated system health checks on any robot unit to confirm hardware readiness before a print job begins, reducing troubleshooting time.
 - **SOP-004:** When a robot unit has no connectivity to the Orchestration Tier, I can apply a software or firmware update locally using portable media so the unit can be kept current without waiting for connectivity to be restored.
-- **SOP-005:** I can home the machine, run ground scanning, and execute a print job through a clear, guided workflow that prevents me from skipping required steps.
-- **SOP-006:** I can create a ground scanning task for a print job, submit it to the task queue, and start or abort it from the control station, so that ground surface data is collected and registered against that job before printing begins.
+- **SOP-005:** I can complete the pre-print sequence — running the ground scan, homing the machine, and acknowledging the job — and then execute a print job through a clear, guided workflow that prevents me from skipping required steps.
+- **SOP-006:** I can start or abort the ground scanning task from the control station within the guided workflow using my local connection to the robot, without requiring connectivity to the Orchestration Tier. If the scan is aborted, I can retry immediately without additional steps, so that ground surface data is always collected and registered against the job before printing begins.
 - **SOP-007:** I can use a tablet connected to the robot's local network to control the machine, start or abort tasks, and override print and extrusion speed, even when there is no connectivity to the Orchestration Tier.
 - **SOP-008:** I am clearly notified when a layer requires lintel placement and must confirm before printing resumes, so structural requirements are never skipped.
 - **SOP-009:** I can trigger an Emergency Stop at any time — using either the software E-Stop control or the hardware E-Stop button on the robot — to immediately halt all robot motion, so I can respond instantly to unsafe conditions on site.
